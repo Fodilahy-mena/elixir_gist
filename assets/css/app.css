@@ -17,6 +17,14 @@
     font-style: normal;
 }
 
+.create_button {
+    @apply bg-emPurple border border-white font-brand font-regular text-black text-base
+}
+
+.create_button:hover {
+    @apply hover:bg-emPurple-dark text-emDark-light border-emDark-light
+}
+
 form input[type="text"] {
     @apply bg-emDark-dark font-brand font-regular text-white text-xs border border-white 
 }
