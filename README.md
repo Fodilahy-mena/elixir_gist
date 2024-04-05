@@ -1,5 +1,36 @@
 # ElixirGist
 
+# Setup project locally
+
+1. Setup phoenix app, see "Phoenix App" below
+
+## Requirements
+
+- asdf
+- Docker
+
+## Build
+
+### PostgreSQL:
+For local development, you can use Docker:
+
+```bash
+docker run --name bs_db_local -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=your_password -d postgres
+```
+### Phoenix App:
+
+Install dependencies using asdf and mix
+```bash
+asdf plugin add erlang
+asdf plugin add elixir
+asdf plugin add nodejs
+asdf install
+
+mix local.hex
+mix deps.get
+mix ecto.setup
+
+```
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
