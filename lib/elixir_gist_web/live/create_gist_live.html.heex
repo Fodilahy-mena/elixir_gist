@@ -4,27 +4,33 @@
     <h1 class="font-brand font-bold text-3xl text-white ">Instantly share Elixir code, notes, and snippets.</h1>
 </div>
 
-<.form for={@form}>
+<.form for={@form} phx-submit="create" phx-change="validate">
     <div class="justify-center px-28 w-full space-y-4 mb-10">
-        <.input field={@form[:description]} placeholder="Gist description..." autocomplete="off"/>
+        <.input field={@form[:description]} placeholder="Gist description..." autocomplete="off" phx-debounce="blur"/>
         <div class="relative">
             <div class="flex p-2 items-center bg-emDark rounded-t-md border">
                 <div class="w-[300px] mb-2">
-                    <.input field={@form[:name]} placeholder="Filename including extension..." autocomplete="off"/>
+                    <.input field={@form[:name]} placeholder="Filename including extension..." autocomplete="off" phx-debounce="blur"/>
                 </div>
             </div>
-
-            <.input
-                class="w-full textarea"
-                field={@form[:markup_text]}
-                placeholder="Insert code..."
-                spellcheck="false"
-                autocomplete="off"
-                type="textarea"
-            />
+            <div id="gist-wrapper" class="flex w-full" phx-update="ignore">
+                <textarea id="line-numbers" class="line-numbers rounded-bl-md" readonly>
+                    <%= "1\n" %>
+                </textarea>
+                <.input
+                    class="textarea w-full"
+                    field={@form[:markup_text]}
+                    placeholder="Insert code..."
+                    phx-hook={"UpdateLineNumbers"}
+                    spellcheck="false"
+                    autocomplete="off"
+                    type="textarea"
+                    phx-debounce="blur"
+                />
+            </div>
         </div>
         <div class="flex justify-end">
-            <.button class="create_button">Save gist</.button>
+            <.button class="create_button" phx-disable-with="Creating...">Save gist</.button>
         </div>
     </div>
 </.form>

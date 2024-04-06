@@ -29,14 +29,27 @@ form input[type="text"] {
     @apply bg-emDark-dark font-brand font-regular text-white text-xs border border-white 
 }
 
+.line-numbers {
+    @apply border border-white font-brand font-regular text-xs text-emDark-light bg-emDark-dark h-[300px] w-[54px] text-right overflow-hidden resize-none;
+    border-right: none;
+    border-top: none;
+}
+
+.line-numbers:focus {
+    @apply focus:outline-none focus:border-white focus:ring-0
+}
+
 form input[type="text"]:focus {
     @apply focus:outline-none focus:border-emLavender focus:ring-0
 }
 
-#gist_markup_text {
-    @apply bg-emDark-dark font-brand font-regular text-white text-xs border border-white h-[300px] resize-none mt-0 rounded-b-md rounded-t-none border-t-0;
+div:has(> #gist_markup_text) {
+    width: 100%;
 }
 
+#gist_markup_text {
+    @apply bg-emDark-dark font-brand font-regular text-white text-xs border border-white h-[300px] resize-none mt-0 rounded-none rounded-br-md border-t-0 border-l-0;
+}
 
 .em-gradient {
     background-image: linear-gradient(to bottom, #631A61, #551653, #340E33, #010101);
